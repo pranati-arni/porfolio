@@ -10,58 +10,35 @@ const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
 function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 /* =================================================================
-   PREMIUM — intro boot-up loader + page-to-page transitions
+   QUICK CLEAN FADE — lift overlay on load, fade between pages
    (runs first so the overlay always lifts)
    ================================================================= */
-(function intro() {
+(function pageFade() {
   const overlay = document.getElementById('pageTransition');
   if (!overlay) return;
-  const bar = overlay.querySelector('.pt__bar span');
-  const status = overlay.querySelector('.pt__status');
   const hide = () => overlay.classList.add('is-hidden');
 
   if (reduceMotion) { hide(); return; }
+  requestAnimationFrame(() => setTimeout(hide, 60));   // fade in on load
 
-  // boot sequence on first visit of the session; quick fade otherwise
-  let firstVisit = true;
-  try { firstVisit = !sessionStorage.getItem('pa_visited'); sessionStorage.setItem('pa_visited', '1'); } catch (e) {}
-
-  if (firstVisit) {
-    let p = 0;
-    const tick = () => {
-      p = Math.min(100, p + (3 + Math.random() * 9));
-      if (bar) bar.style.width = p + '%';
-      if (status) status.textContent = p < 100 ? 'Initializing… ' + Math.round(p) + '%' : 'Ready';
-      if (p < 100) setTimeout(tick, 60);
-      else setTimeout(hide, 360);
-    };
-    setTimeout(tick, 200);
-  } else {
-    if (bar) bar.style.width = '100%';
-    setTimeout(hide, 280);
-  }
-
-  // smooth fade when navigating between internal pages
+  // fade out, then navigate, for internal page-to-page links
   document.querySelectorAll('a[href]').forEach(a => {
     let url;
     try { url = new URL(a.href, location.href); } catch (e) { return; }
-    const external  = a.target === '_blank' || url.origin !== location.origin || a.href.startsWith('mailto:');
+    const external   = a.target === '_blank' || url.origin !== location.origin || a.href.startsWith('mailto:');
     const inPageHash = url.pathname === location.pathname && url.hash;
     if (external || inPageHash) return;
 
     a.addEventListener('click', (e) => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;  // allow open-in-new-tab
-      // same page, no hash → just glide to top, no reload
-      if (url.pathname === location.pathname && !url.hash) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      if (url.pathname === location.pathname && !url.hash) {     // same page → glide to top
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
       e.preventDefault();
-      if (bar) bar.style.width = '100%';
-      if (status) status.textContent = 'Loading…';
       overlay.classList.remove('is-hidden');
-      setTimeout(() => { location.href = a.href; }, 480);
+      setTimeout(() => { location.href = a.href; }, 420);
     });
   });
 })();
@@ -83,7 +60,7 @@ const projects = [
   },
   {
     title: "Project 02",
-    desc:  "Another slot on the trajectory — a future build in the works.",
+    desc:  "Another slot in the works — a future build on the way.",
     tag:   "Coming soon",
     link:  "",
     status:"soon"
@@ -145,7 +122,6 @@ const projects = [
       toggle.setAttribute('aria-expanded', String(open));
     };
     toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
-    // close after tapping a link
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
   }
 })();
@@ -193,19 +169,17 @@ if (nodesWrap) {
   });
 }
 
-/* scroll progress → rail fill + comet + HUD readout (all optional) */
+/* scroll progress → rail fill + comet (optional) */
 (function scrollProgress() {
   const fill  = document.getElementById('railFill');
   const comet = document.getElementById('railComet');
-  const hudScroll = document.getElementById('hudScroll');
-  if (!fill && !comet && !hudScroll) return;
+  if (!fill && !comet) return;
 
   function onScroll() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const pct = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
     if (fill)  fill.style.height = (pct * 100) + '%';
     if (comet) comet.style.top   = (pct * 100) + '%';
-    if (hudScroll) hudScroll.textContent = String(Math.round(pct * 100)).padStart(3, '0');
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
@@ -227,104 +201,11 @@ if (nodesWrap) {
 })();
 
 /* =================================================================
-   ATMOSPHERE — drifting starfield (white + a few blue)
-   ================================================================= */
-(function starfield() {
-  const canvas = document.getElementById('stars');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h, dpr, stars = [];
-
-  function pseudo(n) { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); }
-
-  function build() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = window.innerWidth; h = window.innerHeight;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const count = Math.min(150, Math.round((w * h) / 10000));
-    stars = Array.from({ length: count }, (_, i) => ({
-      x: pseudo(i * 1.3) * w,
-      y: pseudo(i * 2.7) * h,
-      r: 0.4 + pseudo(i * 3.1) * 1.3,
-      baseA: 0.12 + pseudo(i * 4.9) * 0.45,
-      tw: pseudo(i * 5.5) * Math.PI * 2,
-      tws: 0.6 + pseudo(i * 6.3) * 0.9,
-      vy: 0.04 + pseudo(i * 7.1) * 0.10,
-      blue: pseudo(i * 8.9) > 0.82            // a few blue stars
-    }));
-  }
-
-  let t = 0;
-  function frame() {
-    ctx.clearRect(0, 0, w, h);
-    t += 0.016;
-    for (const s of stars) {
-      const a = s.baseA * (0.55 + 0.45 * Math.sin(t * s.tws + s.tw));
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.blue ? `rgba(124,192,255,${a})` : `rgba(255,255,255,${a})`;
-      ctx.fill();
-      s.y -= s.vy;
-      if (s.y < -2) { s.y = h + 2; }
-    }
-    requestAnimationFrame(frame);
-  }
-
-  function drawStatic() {
-    ctx.clearRect(0, 0, w, h);
-    for (const s of stars) {
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.blue ? `rgba(124,192,255,${s.baseA})` : `rgba(255,255,255,${s.baseA})`;
-      ctx.fill();
-    }
-  }
-
-  build();
-  window.addEventListener('resize', () => { build(); if (reduceMotion) drawStatic(); });
-  if (reduceMotion) drawStatic(); else requestAnimationFrame(frame);
-})();
-
-/* =================================================================
-   NAME DECODE / SCRAMBLE on load (home hero only)
-   ================================================================= */
-(function decodeName() {
-  const el = document.getElementById('heroName');
-  if (!el) return;
-  const finalText = el.dataset.text || el.textContent;
-  if (reduceMotion) { el.textContent = finalText; return; }
-
-  const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/<>*#";
-  let frame = 0;
-  const total = 28;
-  const stagger = 1.6;
-
-  function tick() {
-    let out = "";
-    for (let i = 0; i < finalText.length; i++) {
-      const ch = finalText[i];
-      if (ch === " ") { out += " "; continue; }
-      if (frame > i * stagger + 6)      out += ch;
-      else if (frame > i * stagger)     out += glyphs[(frame * 7 + i * 13) % glyphs.length];
-      else                              out += " ";
-    }
-    el.textContent = out;
-    frame++;
-    if (frame <= total + finalText.length * stagger) requestAnimationFrame(tick);
-    else el.textContent = finalText;
-  }
-  requestAnimationFrame(tick);
-})();
-
-/* =================================================================
    3D TILT on project cards (any page with cards)
    ================================================================= */
 (function tiltCards() {
   if (reduceMotion || !canHover) return;
-  const MAX = 9;
+  const MAX = 8;
   document.querySelectorAll('.card').forEach(card => {
     const inner = card.querySelector('.card__inner');
     if (!inner) return;
@@ -364,7 +245,7 @@ if (nodesWrap) {
 })();
 
 /* =================================================================
-   PREMIUM — magnetic buttons (pull slightly toward the cursor)
+   MAGNETIC BUTTONS (pull slightly toward the cursor)
    ================================================================= */
 (function magnetic() {
   if (reduceMotion || !canHover) return;

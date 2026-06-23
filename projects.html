@@ -13,7 +13,7 @@
   <meta property="og:description" content="A growing collection of computer science and AI builds." />
 
   <!-- Inline SVG favicon: silver "PA" tile with blue border -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Crect x='3' y='3' width='58' height='58' rx='12' fill='none' stroke='%234ea3ff' stroke-width='2'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' fill='%23c7ccd6'%3EPA%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0b0f'/%3E%3Crect x='3' y='3' width='58' height='58' rx='12' fill='none' stroke='%234ea3ff' stroke-width='2'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' fill='%23c7ccd6'%3EPA%3C/text%3E%3C/svg%3E" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,34 +25,16 @@
 
 <body>
 
-  <!-- Intro loader / page-transition overlay -->
-  <div class="page-transition" id="pageTransition" aria-hidden="true">
-    <div class="pt__inner">
-      <span class="pt__mark">PA</span>
-      <div class="pt__bar"><span></span></div>
-      <span class="pt__status">Initializing…</span>
-    </div>
-  </div>
+  <!-- Quick clean fade overlay -->
+  <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
 
-  <!-- Film grain -->
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- Ambient layers (same atmosphere as the home page) -->
+  <!-- Soft aurora background -->
   <div class="bg-orbs" aria-hidden="true">
     <div class="orb orb--1"></div>
     <div class="orb orb--2"></div>
     <div class="orb orb--3"></div>
   </div>
-  <canvas id="stars" aria-hidden="true"></canvas>
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-
-  <!-- HUD overlay -->
-  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  <div class="hud" aria-hidden="true">
-    <div>SYS ONLINE <span class="blip"></span></div>
-    <div class="on">33.15°N · 96.82°W</div>
-    <div>SCROLL <span id="hudScroll">000</span>%</div>
-  </div>
 
   <!-- ============================== NAVBAR ============================== -->
   <header class="nav" id="nav">

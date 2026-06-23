@@ -4,9 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ============================================================= -->
-  <!-- SEO + SOCIAL (edit URL once you know your Cloudflare domain)   -->
-  <!-- ============================================================= -->
   <title>Pranati Arni — Computer Science</title>
   <meta name="description" content="Pranati Arni — high school senior in Frisco, TX, passionate about computer science and AI. College CS & internships ahead." />
   <meta name="author" content="Pranati Arni" />
@@ -20,7 +17,7 @@
   <meta name="twitter:description" content="High school senior in Frisco, TX, passionate about computer science and AI." />
 
   <!-- Inline SVG favicon: silver "PA" tile with blue border -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Crect x='3' y='3' width='58' height='58' rx='12' fill='none' stroke='%234ea3ff' stroke-width='2'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' fill='%23c7ccd6'%3EPA%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0b0f'/%3E%3Crect x='3' y='3' width='58' height='58' rx='12' fill='none' stroke='%234ea3ff' stroke-width='2'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' fill='%23c7ccd6'%3EPA%3C/text%3E%3C/svg%3E" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,34 +29,16 @@
 
 <body>
 
-  <!-- Intro loader / page-transition overlay -->
-  <div class="page-transition" id="pageTransition" aria-hidden="true">
-    <div class="pt__inner">
-      <span class="pt__mark">PA</span>
-      <div class="pt__bar"><span></span></div>
-      <span class="pt__status">Initializing…</span>
-    </div>
-  </div>
+  <!-- Quick clean fade overlay -->
+  <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
 
-  <!-- Film grain -->
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- Ambient layers -->
+  <!-- Soft aurora background -->
   <div class="bg-orbs" aria-hidden="true">
     <div class="orb orb--1"></div>
     <div class="orb orb--2"></div>
     <div class="orb orb--3"></div>
   </div>
-  <canvas id="stars" aria-hidden="true"></canvas>
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-
-  <!-- HUD overlay -->
-  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  <div class="hud" aria-hidden="true">
-    <div>SYS ONLINE <span class="blip"></span></div>
-    <div class="on">33.15°N · 96.82°W</div>
-    <div>SCROLL <span id="hudScroll">000</span>%</div>
-  </div>
 
   <!-- ============================== NAVBAR ============================== -->
   <header class="nav" id="nav">
@@ -91,20 +70,12 @@
 
     <!-- ============================== HERO ============================== -->
     <header class="hero" id="top">
-
-      <!-- Revolving orbital system -->
-      <div class="orbital" aria-hidden="true">
-        <div class="orbital__halo"></div>
-        <div class="orbital__core"></div>
-        <div class="orbit orbit--1"><div class="spin"><span class="sat sat--sm"></span></div></div>
-        <div class="orbit orbit--2"><div class="spin"><span class="sat"></span></div></div>
-        <div class="orbit orbit--3"><div class="spin"><span class="sat sat--sm"></span></div></div>
-      </div>
+      <div class="hero__glow" aria-hidden="true"></div>
 
       <div class="hero__content">
         <!-- Kicker — easy to edit or delete -->
-        <span class="kicker">Portfolio · Frisco, TX · Est. 2026</span>
-        <h1 id="heroName" data-text="Pranati Arni">Pranati Arni</h1>
+        <span class="kicker">Portfolio · Frisco, TX</span>
+        <h1>Pranati Arni</h1>
         <p class="role">High school senior, passionate about <b>computer science</b>.</p>
         <p class="loc">Frisco, Texas</p>
         <!-- TAGLINE SLOT: drop a one-liner here later if you ever want one -->
@@ -114,9 +85,6 @@
           <span class="arrow" aria-hidden="true"></span>
         </span>
       </div>
-
-      <!-- Moving perspective grid floor -->
-      <div class="grid-floor" aria-hidden="true"></div>
     </header>
 
     <!-- ============================== ABOUT ============================== -->
@@ -228,7 +196,7 @@
     </section>
 
     <footer>
-      <p>© 2026 Pranati Arni · Built with a trajectory rail · Frisco, TX</p>
+      <p>© 2026 Pranati Arni · Frisco, TX</p>
     </footer>
 
   </main>
