@@ -315,8 +315,14 @@ section {
 .hero__content > *:nth-child(2) { animation-delay: 0.24s; }
 .hero__content > *:nth-child(3) { animation-delay: 0.38s; }
 .hero__content > *:nth-child(4) { animation-delay: 0.50s; }
-.hero__content > *:nth-child(5) { animation-delay: 0.66s; }
+.hero__content > *:nth-child(5) { animation-delay: 0.62s; }
+.hero__content > *:nth-child(6) { animation-delay: 0.74s; }
 @keyframes softIn { to { opacity: 1; transform: none; filter: blur(0); } }
+
+.hero .tagline {
+  margin-top: 14px; font-size: clamp(1rem, 2vw, 1.18rem);
+  color: var(--text); font-weight: 500; max-width: 540px;
+}
 
 .hero h1 {
   font-size: clamp(3rem, 11vw, 6.5rem); font-weight: 700;
