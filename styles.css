@@ -21,11 +21,11 @@
   --border-hi: rgba(37, 99, 255, 0.45);          /* blue on hover/active */
   --shadow:    rgba(10, 10, 12, 0.16);
 
-  /* ---- the single electric accent (cobalt) ---- */
-  --blue:        #2563ff;
-  --blue-bright: #4f7cff;
-  --blue-glow:   rgba(37, 99, 255, 0.40);
-  --blue-grad:   linear-gradient(135deg, #2563ff, #5b8bff);
+  /* ---- the single electric accent (royal blue) ---- */
+  --blue:        #1d4ed8;
+  --blue-bright: #3b66e0;
+  --blue-glow:   rgba(29, 78, 216, 0.42);
+  --blue-grad:   linear-gradient(135deg, #1d4ed8, #4a72e8);
 
   /* ---- layout ---- */
   --rail-x:        72px;
@@ -71,7 +71,7 @@ a { color: inherit; text-decoration: none; }
 .orb { position: absolute; border-radius: 50%; filter: blur(120px); }
 .orb--1 {
   width: 52vw; height: 52vw; top: -18%; left: -10%;
-  background: radial-gradient(circle, rgba(37,99,255,0.10), transparent 70%);
+  background: radial-gradient(circle, rgba(29,78,216,0.11), transparent 70%);
   animation: drift1 34s ease-in-out infinite alternate;
 }
 .orb--2 {
@@ -81,7 +81,7 @@ a { color: inherit; text-decoration: none; }
 }
 .orb--3 {
   width: 38vw; height: 38vw; top: 44%; left: 52%;
-  background: radial-gradient(circle, rgba(37,99,255,0.06), transparent 70%);
+  background: radial-gradient(circle, rgba(29,78,216,0.07), transparent 70%);
   animation: drift3 46s ease-in-out infinite alternate;
 }
 @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(9vw, 7vh) scale(1.12); } }
@@ -92,7 +92,7 @@ a { color: inherit; text-decoration: none; }
   position: fixed; top: 0; left: 0;
   width: 440px; height: 440px; margin: -220px 0 0 -220px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(37,99,255,0.10), transparent 65%);
+  background: radial-gradient(circle, rgba(29,78,216,0.11), transparent 65%);
   pointer-events: none; z-index: 0; opacity: 0;
   transition: opacity 0.5s ease; will-change: transform;
 }
@@ -245,8 +245,8 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 150px 0; scroll-margi
 }
 .hero__glow {
   width: 100%; height: 100%;
-  background: linear-gradient(135deg, #2563ff, #6aa1ff 60%, #9bc0ff);
-  filter: blur(40px); opacity: 0.32;
+  background: linear-gradient(135deg, #1d4ed8, #4f7fe6 60%, #9bb8f5);
+  filter: blur(40px); opacity: 0.34;
   border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
   animation: blobMorph 14s ease-in-out infinite, blobSpin 34s linear infinite;
 }
@@ -318,7 +318,7 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 150px 0; scroll-margi
 .card__inner { transition: transform 0.12s ease-out; transform-style: preserve-3d; }
 .card__glare {
   position: absolute; inset: 0; border-radius: 22px;
-  background: radial-gradient(240px circle at var(--gx,50%) var(--gy,0%), rgba(37,99,255,0.12), transparent 60%);
+  background: radial-gradient(240px circle at var(--gx,50%) var(--gy,0%), rgba(29,78,216,0.13), transparent 60%);
   opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
 }
 .card:hover .card__glare { opacity: 1; }
@@ -370,7 +370,7 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 150px 0; scroll-margi
 .tags .tag:nth-child(3) { animation-delay: 1.6s; }
 @keyframes tagpulse {
   0%,100% { box-shadow: 0 8px 20px -18px var(--shadow); border-color: var(--border); }
-  50%     { box-shadow: 0 10px 24px -16px var(--blue-glow); border-color: rgba(37,99,255,0.25); }
+  50%     { box-shadow: 0 10px 24px -16px var(--blue-glow); border-color: rgba(29,78,216,0.28); }
 }
 .tag:hover { transform: translateY(-3px); border-color: var(--blue); color: var(--blue); }
 
@@ -444,7 +444,7 @@ footer { padding: 60px 0 90px; color: var(--faint); font-size: 0.85rem; max-widt
 .tl-item { display: flex; gap: 20px; }
 .tl-item__rail { display: flex; flex-direction: column; align-items: center; flex: 0 0 auto; }
 .tl-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--blue); flex: 0 0 auto; box-shadow: 0 6px 16px -4px var(--blue-glow), 0 0 0 5px var(--bg); }
-.tl-line { width: 2px; flex: 1; min-height: 26px; background: linear-gradient(var(--blue), rgba(37,99,255,0.2)); margin: 4px 0; border-radius: 2px; }
+.tl-line { width: 2px; flex: 1; min-height: 26px; background: linear-gradient(var(--blue), rgba(29,78,216,0.2)); margin: 4px 0; border-radius: 2px; }
 .tl-item:last-child .tl-line { display: none; }
 .tl-body { padding-bottom: 34px; }
 .tl-year { font-family: var(--mono); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.06em; color: var(--blue); }
