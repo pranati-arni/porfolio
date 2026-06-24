@@ -5,7 +5,7 @@
 
 :root {
   /* ---- surfaces ---- */
-  --bg:        #fff6f0;        /* warm cream canvas         */
+  --bg:        #fffbf8;        /* light warm canvas         */
   --card:      #ffffff;        /* card surface              */
 
   /* ---- text ---- */
@@ -52,7 +52,7 @@ body {
 /* soft warm base wash behind everything */
 body::before {
   content: ""; position: fixed; inset: 0; z-index: -3; pointer-events: none;
-  background: linear-gradient(160deg, #fff7f1 0%, #ffeef3 55%, #ffe7ec 100%);
+  background: linear-gradient(160deg, #fffcf9 0%, #fff4f6 55%, #ffeef1 100%);
 }
 
 h1, h2, h3 { font-family: "Space Grotesk", "Inter", sans-serif; line-height: 1.1; letter-spacing: -0.02em; }
@@ -72,17 +72,17 @@ a { color: inherit; text-decoration: none; }
 .orb { position: absolute; filter: blur(100px); border-radius: 50%; }
 .orb--1 {                                   /* orange */
   width: 50vw; height: 50vw; top: -14%; left: -8%;
-  background: radial-gradient(circle, rgba(255,140,60,0.34), transparent 70%);
+  background: radial-gradient(circle, rgba(255,140,60,0.26), transparent 70%);
   animation: drift1 30s ease-in-out infinite alternate;
 }
 .orb--2 {                                   /* pink */
   width: 46vw; height: 46vw; bottom: -16%; right: -10%;
-  background: radial-gradient(circle, rgba(255,77,141,0.30), transparent 70%);
+  background: radial-gradient(circle, rgba(255,77,141,0.24), transparent 70%);
   animation: drift2 36s ease-in-out infinite alternate;
 }
 .orb--3 {                                   /* peach */
   width: 38vw; height: 38vw; top: 42%; left: 50%;
-  background: radial-gradient(circle, rgba(255,178,122,0.26), transparent 70%);
+  background: radial-gradient(circle, rgba(255,178,122,0.20), transparent 70%);
   animation: drift3 42s ease-in-out infinite alternate;
 }
 @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(9vw, 7vh) scale(1.14); } }
