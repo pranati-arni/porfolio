@@ -233,29 +233,11 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 150px 0; scroll-margi
 
 /* ---- Hero ---- */
 .hero {
-  position: relative; overflow: hidden;
-  min-height: 82vh;
-  margin: 92px auto 0;
-  max-width: var(--maxw);
+  position: relative; overflow: hidden; min-height: 100vh;
   display: flex; flex-direction: column; justify-content: center;
-  padding: clamp(40px, 6vw, 84px);
-  border-radius: 34px;
-  color: #fff;
-  background:
-    radial-gradient(120% 90% at 18% 6%, rgba(72,118,245,0.55) 0%, transparent 46%),
-    radial-gradient(110% 100% at 92% 96%, rgba(10,22,84,0.92) 0%, transparent 55%),
-    linear-gradient(140deg, #0b1a5e 0%, #16307f 48%, #0a1450 100%);
-  box-shadow: 0 44px 100px -54px rgba(13, 26, 96, 0.85);
+  max-width: var(--maxw); margin: 0 auto;
 }
 .hero__content { position: relative; z-index: 3; }
-/* hero sits on a dark panel, so its text goes light */
-.hero .kicker { color: #9fb4ff; }
-.hero h1 { color: #fff; }
-.hero .role { color: rgba(255,255,255,0.90); }
-.hero .role b { color: #fff; }
-.hero .loc { color: rgba(255,255,255,0.62); }
-.hero .scroll-hint { color: rgba(255,255,255,0.6); }
-.hero .scroll-hint .arrow { background: linear-gradient(rgba(255,255,255,0.9), transparent); }
 
 .hero__glow-wrap {
   position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
@@ -264,8 +246,8 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 150px 0; scroll-margi
 }
 .hero__glow {
   width: 100%; height: 100%;
-  background: linear-gradient(135deg, rgba(130,165,255,0.95), rgba(40,85,220,0.55) 55%, rgba(150,180,255,0.85));
-  filter: blur(46px); opacity: 0.6; mix-blend-mode: screen;
+  background: linear-gradient(135deg, #1e40c4, #4f7fe6 60%, #9bb8f5);
+  filter: blur(42px); opacity: 0.28;
   border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
   animation: blobMorph 14s ease-in-out infinite, blobSpin 34s linear infinite;
 }
