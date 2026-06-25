@@ -52,18 +52,25 @@ function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;',
    ================================================================= */
 const projects = [
   {
-    title: "Project 01",
-    desc:  "A space reserved for something I'm building. Check back soon.",
-    tag:   "Coming soon",
-    link:  "",            // e.g. "https://github.com/pranatiarni/..."
-    status:"soon"          // 'soon' = placeholder · 'live' = real project
+    title: "Welcome to CPAL — Dallas Child-Poverty Story",
+    desc:  "An interactive data-story web page I built during my internship at the Child Poverty Action Lab. A ring of neighborhood clocks all keep one time, a \"play the years\" slider walks through Dallas child-poverty data from 1990 to today, and five chapters tell the story — the problem, the data, the network, the response, and the future. Static site: plain HTML, CSS, and JavaScript, no build step.",
+    tag:   "HTML · CSS · JS · Data Viz",
+    link:  "",            // add the live link here once it's deployed
+    status:"live"          // 'soon' = placeholder · 'live' = real project
   },
   {
-    title: "Project 02",
-    desc:  "Another slot in the works — a future build on the way.",
-    tag:   "Coming soon",
+    title: "Compassion In Crisis — Nonprofit Website",
+    desc:  "As Chief Technology Officer of this nonprofit, I built and maintain its website to raise awareness and support fundraising, along with its digital tools and online outreach.",
+    tag:   "Web · Nonprofit",
     link:  "",
-    status:"soon"
+    status:"live"
+  },
+  {
+    title: "Conversation Chatbot",
+    desc:  "A chatbot that simulates a conversation with a user, built during the Elite 101 internship-preparation program while learning Git, Jira, source control, and team collaboration.",
+    tag:   "Python · Chatbot",
+    link:  "",
+    status:"live"
   }
   // , { title:"", desc:"", tag:"", link:"", status:"live" }  <-- add more here
 ];
@@ -131,6 +138,7 @@ const projects = [
    ================================================================= */
 const SECTIONS = [
   { id: 'about',        label: 'About'        },
+  { id: 'journey',      label: 'Journey'      },
   { id: 'achievements', label: 'Achievements' },
   { id: 'projects',     label: 'Projects'     },
   { id: 'skills',       label: 'Skills'       },
