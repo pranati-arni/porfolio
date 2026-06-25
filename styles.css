@@ -499,6 +499,13 @@ footer { padding: 60px 0 90px; color: var(--faint); font-size: 0.85rem; max-widt
   -webkit-backdrop-filter: blur(20px) saturate(1.4); backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid rgba(255,255,255,0.6);
   box-shadow: 0 26px 60px -32px var(--shadow); will-change: transform;
+  animation: achFloat 7s ease-in-out infinite;
+}
+.ach-grid .ach-card:nth-child(2) { animation-delay: 1.6s; }
+.ach-grid .ach-card:nth-child(3) { animation-delay: 0.8s; }
+@keyframes achFloat {
+  0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+  50%      { transform: translateY(-8px) rotate(0.6deg); }
 }
 .ach-card__badge { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: #fff; background: var(--blue-grad); box-shadow: 0 12px 26px -8px var(--blue-glow); margin-bottom: 18px; }
 .ach-card__badge svg { width: 22px; height: 22px; }

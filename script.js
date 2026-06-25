@@ -299,28 +299,10 @@ if (nodesWrap) {
 })();
 
 /* =================================================================
-   FLOATING ACHIEVEMENTS — gentle float + scroll parallax + rotation
+   FLOATING ACHIEVEMENTS — gentle float (handled by CSS @keyframes
+   achFloat, composited transform only). Previously a per-frame
+   requestAnimationFrame loop that called getBoundingClientRect on
+   each card every frame, forcing a synchronous reflow ~60x/sec and
+   driving up Total Blocking Time. CSS runs it on the compositor with
+   zero main-thread cost.
    ================================================================= */
-(function floatingAchievements() {
-  const cards = Array.from(document.querySelectorAll('.ach-card'));
-  if (!cards.length || reduceMotion) return;
-
-  let t0 = null;
-  function frame(now) {
-    if (t0 === null) t0 = now;
-    const t = (now - t0) / 1000;
-    const vh = window.innerHeight || 1;
-    for (let i = 0; i < cards.length; i++) {
-      const c = cards[i];
-      const r = c.getBoundingClientRect();
-      const fromCenter = ((r.top + r.height / 2) - vh / 2) / vh;   // -0.5..0.5 across viewport
-      const speed = parseFloat(c.dataset.speed || '1');
-      const parallax = -fromCenter * 26 * speed;
-      const floatY = Math.sin(t * 0.8 + i * 1.1) * 6;
-      const rot = Math.sin(t * 0.5 + i * 1.3) * 1.6 - fromCenter * 3 * speed;
-      c.style.transform = `translateY(${(parallax + floatY).toFixed(2)}px) rotate(${rot.toFixed(2)}deg)`;
-    }
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
